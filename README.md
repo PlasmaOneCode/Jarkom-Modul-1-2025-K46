@@ -293,14 +293,153 @@ Setelah insiden penyadapan Telnet, Eru memerintahkan semua koneksi administratif
 
 ## soal_14
 
+Setelah gagal mengakses FTP, Melkor melancarkan serangan brute force terhadap  Manwe. Analisis file capture yang disediakan dan identifikasi upaya brute force Melkor. (link file) nc 10.15.43.32 3401
+
+Untuk mendapatkan jawaban dari soal yang berada di nc, perlu masuk ke wireshark. Jawaban soal pertama bisa dilihat di bawah wireshark jika sudah membuka file pcapng. Ditemukan hasilnya adalah 500358 paket yang direkam di file pcapng.
+
+Untuk mencari dari banyaknya paket upaya masuk yang berhasil, dapat dengan mengurutkan paket mulai dari yang terakhir lalu melakukan follow stream ke paket tersebut untuk melihat username dan password. Ditemukan hasilnya adalah n1enna:y4v4nn4_k3m3nt4r1 (user:pass).
+
+Soal berikutnya diminta untuk mencari stream mana yang kredensial itu ditemukan berada. Hal itu bisa dilihat dari follow stream tadi dan berada di bagian kanan bawah windows yang terbuka. Hasilnya adalah 41824.
+
+Setelah itu ada juga jawaban untuk soal selanjutnya yaitu mencari tahu tools apa yang digunakan untuk brute force login. Di bagian atas teks follow stream akan ada tulisan tools, jawaban dari soalnya adalah Fuzz Faster U Fool v2.1.0-dev.
+
+Setelah menjawab semua soal di nc soal tersebut, maka anda akan mendapatkan flag yaitu KOMJAR25{Brut3_F0rc3_yIQuNLV6DD872kb2LeNKiD4b7}
+
 ## soal_15
+
+Melkor menyusup ke ruang server dan memasang keyboard USB berbahaya pada node Manwe. Buka file capture dan identifikasi pesan atau ketikan (keystrokes) yang berhasil dicuri oleh Melkor untuk menemukan password rahasia.
+(link file) nc 10.15.43.32 3402
+
+Soal nc dari soal ini dimulai dengan meminta device apa yang digunakan oleh Melkor. Jawabannya bisa dilihat di salah satu paket awal yang terekam di pcap, yaitu Keyboard.
 
 ## soal_16
 
+Melkor semakin murka ia meletakkan file berbahaya di server milik Manwe. Dari file capture yang ada, identifikasi file apa yang diletakkan oleh Melkor.
+	(link file) nc 10.15.43.32 3403
+
+What credential did the attacker use to log in?
+Format: user:pass
+> ind@psg420.com:{6r_6e#TfT1p    
+
+How many files are suspected of containing malware?
+Format: int
+> 5
+
+What is the hash of the first file (q.exe)?
+Format: sha256
+> ca34b0926cdc3242bbfad1c4a0b42cc2750d90db9a272d92cfb6cb7034d2a3bd
+
+What is the hash of the second file (w.exe)?
+Format: sha256
+> 08eb941447078ef2c6ad8d91bb2f52256c09657ecd3d5344023edccf7291e9fc
+
+What is the hash of the third file (e.exe)?
+Format: sha256
+> 32e1b3732cd779af1bf7730d0ec8a7a87a084319f6a0870dc7362a15ddbd3199
+
+What is the hash of the fourth file (r.exe)?
+Format: sha256
+> 4ebd58007ee933a0a8348aee2922904a7110b7fb6a316b1c7fb2c6677e613884
+
+What is the hash of the fifth file (t.exe)?
+Format: sha256
+> 10ce4b79180a2ddd924fdc95951d968191af2ee3b7dfc96dd6a5714dbeae613a
+Congratulations! Here is your flag: KOMJAR25{Y0u_4r3_4_g00d_4nalyz3r_lGL02w13ZVroUTlNcEPmL4mWj}
+
+
 ## soal_17
+
+ Manwe membuat halaman web di node-nya yang menampilkan gambar cincin agung. Melkor yang melihat web tersebut merasa iri sehingga ia meletakkan file berbahaya agar web tersebut dapat dianggap menyebarkan malware oleh Eru. Analisis file capture untuk menggagalkan rencana Melkor dan menyelamatkan web Manwe.
+(link file) nc 10.15.43.32 3404
+
+Jawaban dari soal di nc soal ini bisa dilihat dengan membuka file -> export object -> http dimana anda akan mendapatkan 3 file. Dari ketiga file tersebut, yang tidak sesuai dengan tempatnya adalah Invoice&MSO-Request.doc dan knr.exe. Lalu, untuk mendapatkan hash sha256 dari knr.exe tersebut bisa dengan menyimpan file tersebut dan menggunakan command berikut di terminal yang sudah masuk directories dimana file tersebut berada : sha256sum knr.exe. Jika file tersebut berasa tidak aman, bisa menambahkan .bin di belakang .exe.
+
+What is the name of the first suspicious file?
+Format: file.exe
+> Invoice&MSO-Request.doc
+
+What is the name of the second suspicious file?
+Format: file.exe
+> knr.exe
+
+What is the hash of the second suspicious file (knr.exe)?
+Format: sha256
+> 749e161661290e8a2d190b1a66469744127bc25bf46e5d0c6f2e835f4b92db18
+Congratulations! Here is your flag: KOMJAR25{M4ster_4n4lyzer_1b0hGihMX9sAujYOAO60yQbXx}
+
 
 ## soal_18
 
+Karena rencana Melkor yang terus gagal, ia akhirnya berhenti sejenak untuk berpikir. Pada saat berpikir ia akhirnya memutuskan untuk membuat rencana jahat lainnya dengan meletakkan file berbahaya lagi tetapi dengan metode yang berbeda. Gagalkan lagi rencana Melkor dengan mengidentifikasi file capture yang disediakan agar dunia tetap aman.
+(link file) nc 10.15.43.32 3405
+
+===== Question 18 =====
+Difficulty: Hard
+Note: You can exit anytime by typing 'exit'
+
+How many files are suspected of containing malware?
+Format: int
+> 2
+
+What is the name of the first malicious file?
+Format: file.exe
+> d0p2nc6ka3f_fixhohlycj40vqfcy_smchzo_ub83urjpphrwahjwhv_o5c0fvf6.exe
+
+What is the name of the second malicious file?
+Format: file.exe
+> oiku9bu68cxqenfmcsos2aek6t07_guuisgxhllixv8dx2eemqddnhyh4618n_di.exe
+
+What is the hash of the first malicious file?
+Format: sha256
+> 59896ae5f3edcb999243c7bfdc0b17eb7fe28f3a66259d797386ea470c010040
+
+What is the hash of the second malicious file?
+Format: sha256
+> cf99990bee6c378cbf56239b3cc88276eec348d82740f84e9d5c343751f82560
+
+Congratulations! Here is your flag: KOMJAR25{Y0u_4re_g0dl1ke_prDBq47H4CzutINNICpVXPpj5}
+
 ## soal_19
 
+Manwe mengirimkan email berisi surat cinta kepada Varda melalui koneksi yang tidak terenkripsi. Melihat hal itu Melkor sipaling jahat langsung melancarkan aksinya yaitu meneror Varda dengan email yang disamarkan. Analisis file capture jaringan dan gagalkan lagi rencana busuk Melkor.
+	(link file) nc 10.15.43.32 3406
+
+===== Soal 19 =====
+Difficulty: Hard
+Note: You can exit anytime by typing 'exit'
+
+Who sent the threatening message?
+Format: string (name)
+> Your Life
+
+How much ransom did the attacker demand ($)?
+Format: int
+> 1600
+
+What is the attacker's bitcoin wallet?
+Format: string
+> 1CWHmuF8dHt7HBGx5RKKLgg9QA2GmE3UyL
+Congratulations! Here is your flag: KOMJAR25{Y0u_4re_J4rk0m_G0d_COUlhthkBi45vnuwvKnEosqkG}
+
 ## soal_20
+
+Untuk yang terakhir kalinya, rencana besar Melkor yaitu menanamkan sebuah file berbahaya kemudian menyembunyikannya agar tidak terlihat oleh Eru. Tetapi Manwe yang sudah merasakan adanya niat jahat dari Melkor, ia menyisipkan bantuan untuk mengungkapkan rencana Melkor. Analisis file capture dan identifikasi kegunaan bantuan yang diberikan oleh Manwe untuk menggagalkan rencana jahat Melkor selamanya.
+(link file) nc 10.15.43.32 3407
+
+===== Soal 20 =====
+Difficulty: Hard
+Note: You can exit anytime by typing 'exit'
+
+What encryption method is used?
+Format: string
+> TLS
+
+What is the name of the malicious file placed by the attacker?
+Format: file.exe
+> invest_20.dll
+
+What is the hash of the file containing the malware?
+Format: sha256
+> 31cf42b2a7c5c558f44cfc67684cc344c17d4946d3a1e0b2cecb8eb58173cb2f
+Congratulations! Here is your flag: KOMJAR25{B3ware_0f_M4lw4re_s7ZkVxA3xx06IaiEtA5t4ZiEj}
+
