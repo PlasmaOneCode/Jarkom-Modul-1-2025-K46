@@ -293,29 +293,49 @@ Setelah insiden penyadapan Telnet, Eru memerintahkan semua koneksi administratif
 
 ## soal_14
 
-Setelah gagal mengakses FTP, Melkor melancarkan serangan brute force terhadap  Manwe. Analisis file capture yang disediakan dan identifikasi upaya brute force Melkor. (link file) nc 10.15.43.32 3401
+_Setelah gagal mengakses FTP, Melkor melancarkan serangan brute force terhadap  Manwe. Analisis file capture yang disediakan dan identifikasi upaya brute force Melkor. (link file) nc 10.15.43.32 3401_
 
-Untuk mendapatkan jawaban dari soal yang berada di nc, perlu masuk ke wireshark. Jawaban soal pertama bisa dilihat di bawah wireshark jika sudah membuka file pcapng. Ditemukan hasilnya adalah 500358 paket yang direkam di file pcapng.
+1. Untuk mendapatkan jawaban dari soal yang berada di nc, perlu masuk ke wireshark. Jawaban soal pertama bisa dilihat di bawah wireshark jika sudah membuka file pcapng. Ditemukan hasilnya adalah 500358 paket yang direkam di file pcapng.
+2. Untuk mencari dari banyaknya paket upaya masuk yang berhasil, dapat dengan mengurutkan paket mulai dari yang terakhir lalu melakukan follow stream ke paket tersebut untuk melihat username dan password. Ditemukan hasilnya adalah n1enna:y4v4nn4_k3m3nt4r1 (user:pass).
+3. Soal berikutnya diminta untuk mencari stream mana yang kredensial itu ditemukan berada. Hal itu bisa dilihat dari follow stream tadi dan berada di bagian kanan bawah windows yang terbuka. Hasilnya adalah 41824.
+4. Setelah itu ada juga jawaban untuk soal selanjutnya yaitu mencari tahu tools apa yang digunakan untuk brute force login. Di bagian atas teks follow stream akan ada tulisan tools, jawaban dari soalnya adalah Fuzz Faster U Fool v2.1.0-dev. Setelah menjawab semua soal di nc soal tersebut, maka anda akan mendapatkan flag yaitu KOMJAR25{Brut3_F0rc3_yIQuNLV6DD872kb2LeNKiD4b7}
 
-Untuk mencari dari banyaknya paket upaya masuk yang berhasil, dapat dengan mengurutkan paket mulai dari yang terakhir lalu melakukan follow stream ke paket tersebut untuk melihat username dan password. Ditemukan hasilnya adalah n1enna:y4v4nn4_k3m3nt4r1 (user:pass).
-
-Soal berikutnya diminta untuk mencari stream mana yang kredensial itu ditemukan berada. Hal itu bisa dilihat dari follow stream tadi dan berada di bagian kanan bawah windows yang terbuka. Hasilnya adalah 41824.
-
-Setelah itu ada juga jawaban untuk soal selanjutnya yaitu mencari tahu tools apa yang digunakan untuk brute force login. Di bagian atas teks follow stream akan ada tulisan tools, jawaban dari soalnya adalah Fuzz Faster U Fool v2.1.0-dev.
-
-Setelah menjawab semua soal di nc soal tersebut, maka anda akan mendapatkan flag yaitu KOMJAR25{Brut3_F0rc3_yIQuNLV6DD872kb2LeNKiD4b7}
+		===== Question 14 =====
+		Difficulty: Easy
+		Note: You can exit anytime by typing 'exit'
+		
+		How many packets are recorded in the pcapng file?
+		Format: int
+		> 500358
+		
+		What are the user that successfully logged in?
+		Format: user:pass
+		> nienna:y4v4nn4_k3m3nt4r1
+		
+		In which stream were the credentials found?
+		Format: int
+		> 41824
+		
+		What tools are used for brute force?
+		Format: Hydra v1.8.0-dev
+		> Fuzz Faster U Fool v2.1.0-dev
+		Congratulations! Here is your flag: KOMJAR25{Brut3_F0rc3_yI0uNLV6DD872kb2LeNKiD4b7}
 
 ## soal_15
 
-Melkor menyusup ke ruang server dan memasang keyboard USB berbahaya pada node Manwe. Buka file capture dan identifikasi pesan atau ketikan (keystrokes) yang berhasil dicuri oleh Melkor untuk menemukan password rahasia.
-(link file) nc 10.15.43.32 3402
+_Melkor menyusup ke ruang server dan memasang keyboard USB berbahaya pada node Manwe. Buka file capture dan identifikasi pesan atau ketikan (keystrokes) yang berhasil dicuri oleh Melkor untuk menemukan password rahasia.
+(link file) nc 10.15.43.32 3402_
 
 Soal nc dari soal ini dimulai dengan meminta device apa yang digunakan oleh Melkor. Jawabannya bisa dilihat di salah satu paket awal yang terekam di pcap, yaitu Keyboard.
 
 ## soal_16
 
-Melkor semakin murka ia meletakkan file berbahaya di server milik Manwe. Dari file capture yang ada, identifikasi file apa yang diletakkan oleh Melkor.
-	(link file) nc 10.15.43.32 3403
+_Melkor semakin murka ia meletakkan file berbahaya di server milik Manwe. Dari file capture yang ada, identifikasi file apa yang diletakkan oleh Melkor.
+	(link file) nc 10.15.43.32 3403_
+
+1. Pertama buka filter -> Endpoints -> IPv4
+2. Urutkan berdasarkan banyak paket lalu gunakan address dengan paket yang paling banyak sebagai filter
+3. 
 
 		What credential did the attacker use to log in?
 		Format: user:pass
@@ -349,10 +369,13 @@ Melkor semakin murka ia meletakkan file berbahaya di server milik Manwe. Dari fi
 
 ## soal_17
 
- Manwe membuat halaman web di node-nya yang menampilkan gambar cincin agung. Melkor yang melihat web tersebut merasa iri sehingga ia meletakkan file berbahaya agar web tersebut dapat dianggap menyebarkan malware oleh Eru. Analisis file capture untuk menggagalkan rencana Melkor dan menyelamatkan web Manwe.
-(link file) nc 10.15.43.32 3404
+ _Manwe membuat halaman web di node-nya yang menampilkan gambar cincin agung. Melkor yang melihat web tersebut merasa iri sehingga ia meletakkan file berbahaya agar web tersebut dapat dianggap menyebarkan malware oleh Eru. Analisis file capture untuk menggagalkan rencana Melkor dan menyelamatkan web Manwe.
+(link file) nc 10.15.43.32 3404_
 
-Jawaban dari soal di nc soal ini bisa dilihat dengan membuka file -> export object -> http dimana anda akan mendapatkan 3 file. Dari ketiga file tersebut, yang tidak sesuai dengan tempatnya adalah Invoice&MSO-Request.doc dan knr.exe. Lalu, untuk mendapatkan hash sha256 dari knr.exe tersebut bisa dengan menyimpan file tersebut dan menggunakan command berikut di terminal yang sudah masuk directories dimana file tersebut berada : sha256sum knr.exe. Jika file tersebut berasa tidak aman, bisa menambahkan .bin di belakang .exe.
+1. Jawaban dari soal di nc soal ini bisa dilihat dengan membuka file -> export object -> http dimana anda akan mendapatkan 3 file. Dari ketiga file tersebut, yang tidak sesuai dengan tempatnya adalah Invoice&MSO-Request.doc dan knr.exe.
+2. Lalu, untuk mendapatkan hash sha256 dari knr.exe tersebut bisa dengan menyimpan file tersebut dan menggunakan command berikut di terminal yang sudah masuk directories dimana file tersebut berada :
+   > sha256sum knr.exe.
+   Jika file tersebut berasa tidak aman, bisa menambahkan .bin di belakang .exe.
 
 		What is the name of the first suspicious file?
 		Format: file.exe
@@ -370,8 +393,14 @@ Jawaban dari soal di nc soal ini bisa dilihat dengan membuka file -> export obje
 
 ## soal_18
 
-Karena rencana Melkor yang terus gagal, ia akhirnya berhenti sejenak untuk berpikir. Pada saat berpikir ia akhirnya memutuskan untuk membuat rencana jahat lainnya dengan meletakkan file berbahaya lagi tetapi dengan metode yang berbeda. Gagalkan lagi rencana Melkor dengan mengidentifikasi file capture yang disediakan agar dunia tetap aman.
-(link file) nc 10.15.43.32 3405
+_Karena rencana Melkor yang terus gagal, ia akhirnya berhenti sejenak untuk berpikir. Pada saat berpikir ia akhirnya memutuskan untuk membuat rencana jahat lainnya dengan meletakkan file berbahaya lagi tetapi dengan metode yang berbeda. Gagalkan lagi rencana Melkor dengan mengidentifikasi file capture yang disediakan agar dunia tetap aman.
+(link file) nc 10.15.43.32 3405_
+
+1. Seperti soal 17, untuk mengerjakan soal ini anda bisa buka file -> export object -> smb. Anda akan menemukan 2 file yang memiliki .exe di belakangnya meski dengan nama panjang yaitu d0p2nc6ka3f_fixhohlycj40vqfcy_smchzo_ub83urjpphrwahjwhv_o5c0fvf6.exe dan oiku9bu68cxqenfmcsos2aek6t07_guuisgxhllixv8dx2eemqddnhyh4618n_di.exe.
+2. Simpan kedua file tersebut lalu menggunakan command berikut di terminal yang sudah masuk directories dimana file tersebut berada :
+   > sha256sum "Nama File".exe
+   Jika file tersebut berasa tidak aman, bisa menambahkan .bin di belakang .exe.
+
 
 		===== Question 18 =====
 		Difficulty: Hard
@@ -401,8 +430,13 @@ Karena rencana Melkor yang terus gagal, ia akhirnya berhenti sejenak untuk berpi
 
 ## soal_19
 
-Manwe mengirimkan email berisi surat cinta kepada Varda melalui koneksi yang tidak terenkripsi. Melihat hal itu Melkor sipaling jahat langsung melancarkan aksinya yaitu meneror Varda dengan email yang disamarkan. Analisis file capture jaringan dan gagalkan lagi rencana busuk Melkor.
-	(link file) nc 10.15.43.32 3406
+_Manwe mengirimkan email berisi surat cinta kepada Varda melalui koneksi yang tidak terenkripsi. Melihat hal itu Melkor sipaling jahat langsung melancarkan aksinya yaitu meneror Varda dengan email yang disamarkan. Analisis file capture jaringan dan gagalkan lagi rencana busuk Melkor.
+	(link file) nc 10.15.43.32 3406_
+
+1. Buka file PCAP dengan wireshark. Paket di file itu akan muncul.
+2. Urutkan berdasarkan Info (di bagian pojok kanan wireshark) lalu cari hingga ketemu yang berisi
+   > from: Your Life<YourLife**@****.com>, subject: ******
+3. Setelah menemukan paket seperti itu, klik kanan dan pencet follow stream -> Stream. Setelah itu anda akan menemukan data dari email seperti siapa pengirim email, berapa banyak ransom yang diminta, dan apa bitcoin wallet milik penyerang.
 
 		===== Soal 19 =====
 		Difficulty: Hard
