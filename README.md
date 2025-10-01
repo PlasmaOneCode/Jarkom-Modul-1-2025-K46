@@ -375,7 +375,7 @@ _Melkor semakin murka ia meletakkan file berbahaya di server milik Manwe. Dari f
 1. Jawaban dari soal di nc soal ini bisa dilihat dengan membuka file -> export object -> http dimana anda akan mendapatkan 3 file. Dari ketiga file tersebut, yang tidak sesuai dengan tempatnya adalah Invoice&MSO-Request.doc dan knr.exe.
 2. Lalu, untuk mendapatkan hash sha256 dari knr.exe tersebut bisa dengan menyimpan file tersebut dan menggunakan command berikut di terminal yang sudah masuk directories dimana file tersebut berada :
    > sha256sum knr.exe.
-   Jika file tersebut berasa tidak aman, bisa menambahkan .bin di belakang .exe.
+Jika file tersebut berasa tidak aman, bisa menambahkan .bin di belakang .exe.
 
 		What is the name of the first suspicious file?
 		Format: file.exe
@@ -399,7 +399,7 @@ _Karena rencana Melkor yang terus gagal, ia akhirnya berhenti sejenak untuk berp
 1. Seperti soal 17, untuk mengerjakan soal ini anda bisa buka file -> export object -> smb. Anda akan menemukan 2 file yang memiliki .exe di belakangnya meski dengan nama panjang yaitu d0p2nc6ka3f_fixhohlycj40vqfcy_smchzo_ub83urjpphrwahjwhv_o5c0fvf6.exe dan oiku9bu68cxqenfmcsos2aek6t07_guuisgxhllixv8dx2eemqddnhyh4618n_di.exe.
 2. Simpan kedua file tersebut lalu menggunakan command berikut di terminal yang sudah masuk directories dimana file tersebut berada :
    > sha256sum "Nama File".exe
-   Jika file tersebut berasa tidak aman, bisa menambahkan .bin di belakang .exe.
+Jika file tersebut berasa tidak aman, bisa menambahkan .bin di belakang .exe.
 
 
 		===== Question 18 =====
@@ -457,8 +457,19 @@ _Manwe mengirimkan email berisi surat cinta kepada Varda melalui koneksi yang ti
 
 ## soal_20
 
-Untuk yang terakhir kalinya, rencana besar Melkor yaitu menanamkan sebuah file berbahaya kemudian menyembunyikannya agar tidak terlihat oleh Eru. Tetapi Manwe yang sudah merasakan adanya niat jahat dari Melkor, ia menyisipkan bantuan untuk mengungkapkan rencana Melkor. Analisis file capture dan identifikasi kegunaan bantuan yang diberikan oleh Manwe untuk menggagalkan rencana jahat Melkor selamanya.
-(link file) nc 10.15.43.32 3407
+_Untuk yang terakhir kalinya, rencana besar Melkor yaitu menanamkan sebuah file berbahaya kemudian menyembunyikannya agar tidak terlihat oleh Eru. Tetapi Manwe yang sudah merasakan adanya niat jahat dari Melkor, ia menyisipkan bantuan untuk mengungkapkan rencana Melkor. Analisis file capture dan identifikasi kegunaan bantuan yang diberikan oleh Manwe untuk menggagalkan rencana jahat Melkor selamanya.
+(link file) nc 10.15.43.32 3407_
+
+1. Lakukan display filter menggunakan berikut :
+   > http
+2. Setelah itu pencet ctrl+f dan cari GET. Gunakan pencarian pada packet details, string. Anda akan menemukan 3 file dimana salah satunya adalah invest_20.dll.
+3. Gunakan file -> http -> Lalu cari invest_20.dll untuk disimpan.
+4. Setelah disimpan gunakan command berikut di terminal yang sudah masuk directories dimana file tersebut berada :
+   > sha256sum "Nama File".exe
+Jika file tersebut berasa tidak aman, bisa menambahkan .bin di belakang .exe.
+5. Metode enkripsi bisa dicari dengan display filter berikut :
+> tls.handshake.type == 2
+Setelah itu cari di packet details -> Transport Layer Security -> lalu cek Cypher Suite. Yang saya dapatkan adalah Cipher Suite: TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 (0xc02f). Hal itu menunjukkan bahwa metode enkripsinya adalah TLS.
 
 		===== Soal 20 =====
 		Difficulty: Hard
