@@ -321,6 +321,10 @@ _Setelah gagal mengakses FTP, Melkor melancarkan serangan brute force terhadap  
 		> Fuzz Faster U Fool v2.1.0-dev
 		Congratulations! Here is your flag: KOMJAR25{Brut3_F0rc3_yI0uNLV6DD872kb2LeNKiD4b7}
 
+<img width="513" height="455" alt="image" src="https://github.com/user-attachments/assets/4378227a-8403-4655-9172-103361a7b85b" />
+<img width="795" height="685" alt="image" src="https://github.com/user-attachments/assets/ea206710-d58c-4a52-8206-b73dbeb2d3a4" />
+
+
 ## soal_15
 
 _Melkor menyusup ke ruang server dan memasang keyboard USB berbahaya pada node Manwe. Buka file capture dan identifikasi pesan atau ketikan (keystrokes) yang berhasil dicuri oleh Melkor untuk menemukan password rahasia.
@@ -333,9 +337,20 @@ Soal nc dari soal ini dimulai dengan meminta device apa yang digunakan oleh Melk
 _Melkor semakin murka ia meletakkan file berbahaya di server milik Manwe. Dari file capture yang ada, identifikasi file apa yang diletakkan oleh Melkor.
 	(link file) nc 10.15.43.32 3403_
 
-1. Pertama buka filter -> Endpoints -> IPv4
-2. Urutkan berdasarkan banyak paket lalu gunakan address dengan paket yang paling banyak sebagai filter
-3. 
+1. Pertama gunakan display filter ftp. Anda akan menemukan seperti berikut :
+>229	2019-06-14 06:22:15.930789	216.55.163.106	10.6.13.102	FTP	101	1	Response: 331 User ind@psg420.com OK. Password required
+227	2019-06-14 06:22:15.870695	10.6.13.102	216.55.163.106	FTP	75	1	Request: USER ind@psg420.com
+
+2. Selanjutnya gunakan filter menggunakan ctrl+f lalu ketik RETR dengan yang dicari berupa Packet details dan String. Anda akan menemukan 5 paket yang memiliki RETR *.exe.
+3. Klik kanan pada salah satu paket tersebut lalu follow stream. Pastikan anda show as UTF-8. Cari yang mirip seperti berikut untuk setiap .exe :
+> 227 Entering Passive Mode (216,55,163,106,233,137)
+
+Dari 227 Entering Passive Mode (a,b,c,d,p1,p2) → data port = p1*256 + p2. Contoh: (216,55,163,106,199,145) → port = 199*256 + 145 = 51009.
+4. Gunakan display filter berikut :
+ip.addr == 216.55.163.106 && tcp.port == 51009
+
+Ganti port sesuai rumus tadi lalu anda akan menemukan beberapa paket. Urutkan dari yang length terpanjang/terbesar lalu follow stream paket tersebut. Lalu save itu sebagai raw dan diberi nama sesuai dengan .exe paket tersebut.
+5. Gunakan sha256sum pada .exe tersebut.
 
 		What credential did the attacker use to log in?
 		Format: user:pass
@@ -366,6 +381,9 @@ _Melkor semakin murka ia meletakkan file berbahaya di server milik Manwe. Dari f
 		> 10ce4b79180a2ddd924fdc95951d968191af2ee3b7dfc96dd6a5714dbeae613a
 		Congratulations! Here is your flag: KOMJAR25{Y0u_4r3_4_g00d_4nalyz3r_lGL02w13ZVroUTlNcEPmL4mWj}
 
+<img width="612" height="748" alt="image" src="https://github.com/user-attachments/assets/862447f8-6caf-45df-9ac6-c04db398b7b0" />
+<img width="615" height="747" alt="image" src="https://github.com/user-attachments/assets/f59e121c-44b7-4b90-b5c8-6280f7ac3362" />
+
 
 ## soal_17
 
@@ -390,6 +408,8 @@ Jika file tersebut berasa tidak aman, bisa menambahkan .bin di belakang .exe.
 		Format: sha256
 		> 749e161661290e8a2d190b1a66469744127bc25bf46e5d0c6f2e835f4b92db18
 		Congratulations! Here is your flag: KOMJAR25{M4ster_4n4lyzer_1b0hGihMX9sAujYOAO60yQbXx}
+
+<img width="607" height="456" alt="image" src="https://github.com/user-attachments/assets/5149efe7-b675-434c-88e0-8d12d9bb6ca5" />
 
 
 ## soal_18
@@ -430,6 +450,9 @@ Jika file tersebut berasa tidak aman, bisa menambahkan .bin di belakang .exe.
 		
 		Congratulations! Here is your flag: KOMJAR25{Y0u_4re_g0dl1ke_prDBq47H4CzutINNICpVXPpj5}
 
+<img width="607" height="456" alt="image" src="https://github.com/user-attachments/assets/d0f4f394-54fb-4714-98b3-d84a6340482d" />
+
+
 ## soal_19
 
 _Manwe mengirimkan email berisi surat cinta kepada Varda melalui koneksi yang tidak terenkripsi. Melihat hal itu Melkor sipaling jahat langsung melancarkan aksinya yaitu meneror Varda dengan email yang disamarkan. Analisis file capture jaringan dan gagalkan lagi rencana busuk Melkor.
@@ -456,6 +479,10 @@ _Manwe mengirimkan email berisi surat cinta kepada Varda melalui koneksi yang ti
 		Format: string
 		> 1CWHmuF8dHt7HBGx5RKKLgg9QA2GmE3UyL
 		Congratulations! Here is your flag: KOMJAR25{Y0u_4re_J4rk0m_G0d_COUlhthkBi45vnuwvKnEosqkG}
+
+<img width="599" height="457" alt="image" src="https://github.com/user-attachments/assets/c77799a8-41f7-4618-8111-abed2455d89a" />
+<img width="615" height="747" alt="image" src="https://github.com/user-attachments/assets/967b2688-f7e3-4b12-b1bb-2544e852743c" />
+
 
 ## soal_20
 
