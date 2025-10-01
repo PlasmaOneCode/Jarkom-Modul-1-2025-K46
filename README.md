@@ -1,10 +1,8 @@
 # Jarkom-Modul-1-2025-K46
 
-===========[Kelompok IT27]=============
+===========[Kelompok 46]=============
 
-Khumaidi Kharis Az-zacky - 5027241049
-
-Mohamad Arkan Zahir Asyafiq - 5027241120
+Mutiara Diva Jaladitha - 5027241083
 
 Abiyyu Raihan Putra Wikanto - 5027241042
 
