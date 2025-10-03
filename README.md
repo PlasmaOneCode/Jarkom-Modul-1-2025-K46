@@ -267,11 +267,19 @@ ERU
 ## soal_10
 Melkor yang marah karena tidak diberi akses, mencoba melakukan serangan dengan mengirimkan banyak sekali request ke server Eru. Gunakan command ping dari node Melkor ke node Eru dengan jumlah paket yang tidak biasa (spam ping misalnya 100 paket). Amati hasilnya, apakah ada packet loss? Catat average round trip time untuk melihat apakah serangan tersebut mempengaruhi kinerja Eru.
 ### Langkah pengerjaan
-
+1. ping 192.234.1.1 -c 100
 
 ## soal_11
 Sebelum era koneksi aman, Eru sering menyelinap masuk ke wilayah Melkor. Eru perlu masuk ke node tersebut untuk memeriksa konfigurasi, namun ia tahu Melkor mungkin sedang memantau jaringan. Buktikan kelemahan protokol Telnet dengan membuat akun dan password baru di node Melkor kemudian menangkap sesi login Eru ke node Melkor menggunakan Wireshark. Tunjukkan bagaimana username dan password dapat terlihat sebagai plain text. 
 ### Langkah pengerjaan
+Jalankan command-command berikut di Melkor
+1. adduser jala
+2. apt install telnetd -y
+3. apt install openbsd-inetd -y
+4. echo "telnet stream tcp nowait root /usr/sbin/telnetd telnetd" >> /etc/inetd.conf
+5. service openbsd-inetd restart
+Jalankan command-command berikut di Eru
+7. telnet 10.15.43.32 5352
 
 
 ## soal_12
@@ -289,7 +297,12 @@ MELKOR
 ## soal_13
 Setelah insiden penyadapan Telnet, Eru memerintahkan semua koneksi administratif harus menggunakan SSH (Secure Shell) untuk mengamankan jaringan. Lakukan koneksi SSH dari node Varda ke Eru. Tangkap sesi tersebut menggunakan Wireshark. Analisis dan jelaskan mengapa username dan password tidak dapat dilihat seperti pada sesi Telnet. Tunjukkan paket-paket terenkripsi dalam hasil capture sebagai bukti keamanan SSH.
 ### Langkah pengerjaan
-
+Jalankan command-command berikut di Eru
+1. apt install openssh-server -y
+2. service ssh start
+3. adduser jala
+Jalankan command-command berikut di Varda
+4. ssh jala@192.234.2.1
 
 ## soal_14
 
