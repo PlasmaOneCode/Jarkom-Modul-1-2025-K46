@@ -19,12 +19,12 @@ _Untuk mempersiapkan pembuatan entitas selain mereka, Eru yang berperan sebagai 
 7.	Gunakan aktifkan menu Add a Link
 8.	Lalu klik node, pilih interface eth0, dan klik node NAT yang ditarik tadi
 9.	Lalu konfigurasi IP dari node ubuntu
-•	Cari 2 line yang seperti ini
+- Cari 2 line yang seperti ini
 ```
 # auto eth0
 # iface eth0 inet dhcp
 ```
-•	Uncomment kedua line tersebut, lalu save
+- Uncomment kedua line tersebut, lalu save
 ```
 auto eth0
 iface eth0 inet dhcp
@@ -33,7 +33,8 @@ iface eth0 inet dhcp
 11. Akses console dari node, dan coba ping ke google
 12. Ganti nama node ini menjadi Eru dengan fitur Change hostname di node, dan juga ganti symbol ke simbol router dengan fitur Change symbol
 13. Tambahkan beberapa node ethernet switch dan ubuntu, lalu buat hubungan antar node dan nama-nama dari node hingga seperti di gambar
-2.	Gunakan fitur Change hostname untuk merubah nama-nama dari node
+![](images/1.png)
+
 
 
 ## soal_2
@@ -112,6 +113,8 @@ telnet 10.15.43.32 5352
 ```
 echo nameserver 192.168.122.1 > /etc/resolv.conf
 ```
+![](images/4-melkor.png)
+
 - Manwe
 ```
 telnet 10.15.43.32 5353
@@ -119,6 +122,7 @@ telnet 10.15.43.32 5353
 ```
 echo nameserver 192.168.122.1 > /etc/resolv.conf
 ```
+![](images/4-manwe.png)
 
 - Varda
 ```
@@ -127,6 +131,7 @@ telnet 10.15.43.32 5354
 ```
 echo nameserver 192.168.122.1 > /etc/resolv.conf
 ```
+![](images/4-varda.png)
 
 - Ulmo
 ```
@@ -135,6 +140,7 @@ telnet 10.15.43.32 5355
 ```
 echo nameserver 192.168.122.1 > /etc/resolv.conf
 ```
+![](images/4-ulmo.png)
 
 ## soal_5
 _Ainur terkuat Melkor tetap berusaha untuk menanamkan kejahatan ke dalam Arda (Bumi). Sebelum terjadi kerusakan, Eru dan para Ainur lainnya meminta agar semua konfigurasi tidak hilang saat semua node di restart._
@@ -172,8 +178,10 @@ wget --no-check-certificate "https://drive.usercontent.google.com/u/0/uc?id=1bE3
 ```
 ./traffic.sh
 ```
+![](images/6-1.png)
 8. Buka wireshark. Jika berhasil, traffic akan muncul di wireshark.
 9. Jika file sudah selesai dijalankan, stop capture lalu simpan file.
+![](images/6-2.png)
 
 ## soal_7
 _Untuk meningkatkan keamanan, Eru memutuskan untuk membuat sebuah FTP Server di node miliknya. Lakukan konfigurasi FTP Server pada node Eru. Buat dua user baru: ainur dengan hak akses write&read dan melkor tanpa hak akses sama sekali ke direktori shared. Buktikan hasil tersebut dengan membuat file teks sederhana kemudian akses file tersebut menggunakan kedua user._
@@ -215,6 +223,7 @@ ftp 192.234.1.1
 ```
 7. Buat file bebas.
 8. Coba akses file tersebut menggunakan user ainur dan melkor.
+9. ![](images/7.png)
 
 ## soal_8
 _Ulmo, sebagai penjaga perairan, perlu mengirimkan data ramalan cuaca ke node Eru. Lakukan koneksi sebagai client dari node Ulmo ke FTP Server Eru menggunakan user ainur. Upload sebuah file berikut (link file). Analisis proses ini menggunakan Wireshark dan identifikasi perintah FTP yang digunakan untuk proses upload._
@@ -241,6 +250,7 @@ put mendung.jpg
 ```
 8. Buka wireshark. Jika berhasil, proses upload akan muncul di wireshark.
 9. Stop capture lalu simpan file.
+10. ![](images/8.png)
 
 ## soal_9
 _Eru ingin membagikan "Kitab Penciptaan" kepada Manwe. Dari FTP Server Eru, download file tersebut ke node Manwe. Karena Eru merasa Kitab tersebut sangat penting maka ia mengubah akses user ainur menjadi read-only. Gunakan Wireshark untuk memonitor koneksi, identifikasi perintah FTP yang digunakan, dan uji akses user ainur._
@@ -278,6 +288,7 @@ chmod 555 /srv/ftp/shared
 13. Masuk ke ftp sebagai ainur
 14. Coba `put halo.txt`
 15. Periksa lagi wireshark untuk memonitor koneksi, identifikasi perintah FTP yang digunakan, dan uji akses user ainur.
+16. ![](images/9.png)
 
 ## soal_10
 _Melkor yang marah karena tidak diberi akses, mencoba melakukan serangan dengan mengirimkan banyak sekali request ke server Eru. Gunakan command ping dari node Melkor ke node Eru dengan jumlah paket yang tidak biasa (spam ping misalnya 100 paket). Amati hasilnya, apakah ada packet loss? Catat average round trip time untuk melihat apakah serangan tersebut mempengaruhi kinerja Eru._
@@ -286,6 +297,7 @@ _Melkor yang marah karena tidak diberi akses, mencoba melakukan serangan dengan 
 ```
 ping 192.234.1.1 -c 100
 ```
+![](images/10.png)
 
 ## soal_11
 _Sebelum era koneksi aman, Eru sering menyelinap masuk ke wilayah Melkor. Eru perlu masuk ke node tersebut untuk memeriksa konfigurasi, namun ia tahu Melkor mungkin sedang memantau jaringan. Buktikan kelemahan protokol Telnet dengan membuat akun dan password baru di node Melkor kemudian menangkap sesi login Eru ke node Melkor menggunakan Wireshark. Tunjukkan bagaimana username dan password dapat terlihat sebagai plain text._
@@ -314,6 +326,7 @@ Jalankan command-command berikut di Eru
 ```
 telnet 10.15.43.32 5352
 ```
+![](images/11.png)
 
 ## soal_12
 _Eru mencurigai Melkor menjalankan beberapa layanan terlarang di node-nya. Lakukan pemindaian port sederhana dari node Eru ke node Melkor menggunakan Netcat (nc) untuk memeriksa port 21, 80, dalam keadaan terbuka dan port rahasia 666 dalam keadaan tertutup._
@@ -344,6 +357,7 @@ nc -zv 192.234.1.2 80
 ```
 nc -zv 192.234.1.2 666
 ```
+![](images/12.png)
 
 ## soal_13
 _Setelah insiden penyadapan Telnet, Eru memerintahkan semua koneksi administratif harus menggunakan SSH (Secure Shell) untuk mengamankan jaringan. Lakukan koneksi SSH dari node Varda ke Eru. Tangkap sesi tersebut menggunakan Wireshark. Analisis dan jelaskan mengapa username dan password tidak dapat dilihat seperti pada sesi Telnet. Tunjukkan paket-paket terenkripsi dalam hasil capture sebagai bukti keamanan SSH._
@@ -367,7 +381,9 @@ Jalankan command-command berikut di Varda
 ```
 ssh jala@192.234.2.1
 ```
+![](images/13-1.png)
 6. Amati prosesnya di wireshark. Akan muncul paket-paket berlabel SSH di kolom Protocol. Paket akan menunjukkan Data (encrypted) atau SSH Protocol dengan payload berupa bytes acak; tidak ada teks login: atau Password: yang mudah dibaca. Klik kanan → Follow → TCP Stream, isi stream akan tampil sebagai binary/garbage (bukan username/password).
+![](images/13-2.png)
 
 ## soal_14
 
