@@ -8,7 +8,7 @@ Abiyyu Raihan Putra Wikanto - 5027241042
 
 ============[PENJELASAN SOAL]=============
 ## soal_1 
-Untuk mempersiapkan pembuatan entitas selain mereka, Eru yang berperan sebagai Router membuat dua Switch/Gateway. Dimana Switch 1 akan menuju ke dua Ainur yaitu Melkor dan Manwe. Sedangkan Switch 2 akan menuju ke dua Ainur lainnya yaitu Varda dan Ulmo. Keempat Ainur tersebut diberi perintah oleh Eru untuk menjadi Client.
+_Untuk mempersiapkan pembuatan entitas selain mereka, Eru yang berperan sebagai Router membuat dua Switch/Gateway. Dimana Switch 1 akan menuju ke dua Ainur yaitu Melkor dan Manwe. Sedangkan Switch 2 akan menuju ke dua Ainur lainnya yaitu Varda dan Ulmo. Keempat Ainur tersebut diberi perintah oleh Eru untuk menjadi Client._
 ## Langkah pengerjaan
 1. Buka http://10.15.43.32/ di browswe. Buat project dengan nama Modul-1-K-46
 2. Klik kanan pada node, buka Configure
@@ -37,10 +37,9 @@ iface eth0 inet dhcp
 
 
 ## soal_2
-Karena menurut Eru pada saat itu Arda (Bumi) masih terisolasi dengan dunia luar, maka buat agar Eru dapat tersambung ke internet.
+_Karena menurut Eru pada saat itu Arda (Bumi) masih terisolasi dengan dunia luar, maka buat agar Eru dapat tersambung ke internet._
 ## Langkah pengerjaan
 1. Setting network node Eru dengan fitur Edit network configuration, kita bisa menghapus semua settingnya dan mengisi dengan settingan di bawah
-•	Eru
 ```
 auto eth0
 iface eth0 inet dhcp
@@ -58,15 +57,15 @@ netmask 255.255.255.0
 2. Restart semua node
 3. Cek semua node ubuntu apakah sudah memiliki ip yang sesuai dengan settingan dengan command ip a.
 4. Topologi yang dibuat sudah bisa berjalan secara lokal, tetapi kita belum bisa mengakses jaringan keluar. Maka kita perlu melakukan beberapa hal.
-•	Ketikkan command `iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE -s [Prefix IP].0.0/16` pada router Eru
-•	Ketikkan command `cat /etc/resolv.conf di Eru`
+- Ketikkan command `iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE -s [Prefix IP].0.0/16` pada router Eru
+- Ketikkan command `cat /etc/resolv.conf di Eru`
 Semua node sekarang sudah bisa melakukan ping ke google, yang artinya adalah sudah tersambung ke internet 
 
 ## soal_3 
-Sekarang pastikan agar setiap Ainur (Client) dapat terhubung satu sama lain.
+_Sekarang pastikan agar setiap Ainur (Client) dapat terhubung satu sama lain._
 ### Langkah pengerjaan
 1. Setting network masing-masing node dengan fitur Edit network configuration, kita bisa menghapus semua settingnya dan mengisi dengan settingan di bawah
-•	Melkor
+- Melkor
 ```
 auto eth0
 iface eth0 inet static
@@ -75,7 +74,7 @@ netmask 255.255.255.0
 gateway [Prefix IP].1.1
 ```
 
-•	Manwe
+- Manwe
 ```
 auto eth0
 iface eth0 inet static
@@ -84,7 +83,7 @@ netmask 255.255.255.0
 gateway 192.234.1.1
 ```
 
-•	Varda
+- Varda
 ```
 auto eth0
 iface eth0 inet static
@@ -93,7 +92,7 @@ iface eth0 inet static
 	gateway 192.234.2.1
 ```
 
-•	Ulmo
+- Ulmo
 ```
 auto eth0
 iface eth0 inet static
@@ -103,17 +102,17 @@ gateway 192.234.2.1
 ```
 
 ## soal_4
-Setelah berhasil terhubung, sekarang Eru ingin agar setiap Ainur (Client) dapat mandiri. Oleh karena itu pastikan agar setiap Client dapat tersambung ke internet.
+_Setelah berhasil terhubung, sekarang Eru ingin agar setiap Ainur (Client) dapat mandiri. Oleh karena itu pastikan agar setiap Client dapat tersambung ke internet._
 ### Langkah pengerjaan
 1. Cek apakah setiap client dapat tersambung ke internet
-•	Melkor
+- Melkor
 ```
 telnet 10.15.43.32 5352
 ```
 ```
 echo nameserver 192.168.122.1 > /etc/resolv.conf
 ```
-•	Manwe
+- Manwe
 ```
 telnet 10.15.43.32 5353
 ```
@@ -121,7 +120,7 @@ telnet 10.15.43.32 5353
 echo nameserver 192.168.122.1 > /etc/resolv.conf
 ```
 
-•	Varda
+- Varda
 ```
 telnet 10.15.43.32 5354
 ```
@@ -129,7 +128,7 @@ telnet 10.15.43.32 5354
 echo nameserver 192.168.122.1 > /etc/resolv.conf
 ```
 
-•	Ulmo
+- Ulmo
 ```
 telnet 10.15.43.32 5355
 ```
@@ -138,7 +137,7 @@ echo nameserver 192.168.122.1 > /etc/resolv.conf
 ```
 
 ## soal_5
-Ainur terkuat Melkor tetap berusaha untuk menanamkan kejahatan ke dalam Arda (Bumi). Sebelum terjadi kerusakan, Eru dan para Ainur lainnya meminta agar semua konfigurasi tidak hilang saat semua node di restart.
+_Ainur terkuat Melkor tetap berusaha untuk menanamkan kejahatan ke dalam Arda (Bumi). Sebelum terjadi kerusakan, Eru dan para Ainur lainnya meminta agar semua konfigurasi tidak hilang saat semua node di restart._
 ### Langkah pengerjaan
 1. Setting network node Eru dengan fitur Edit network configuration, kita bisa menambahkan code di bawah
 ```
@@ -159,7 +158,7 @@ up echo nameserver 192.168.122.1 > /etc/resolv.conf
 ```
 
 ## soal_6
-Setelah semua Ainur terhubung ke internet, Melkor mencoba menyusup ke dalam komunikasi antara Manwe dan Eru. Jalankan file berikut (link file) lalu lakukan packet sniffing menggunakan Wireshark pada koneksi antara Manwe dan Eru, lalu terapkan display filter untuk menampilkan semua paket yang berasal dari atau menuju ke IP Address Manwe. Simpan hasil capture tersebut sebagai bukti.
+_Setelah semua Ainur terhubung ke internet, Melkor mencoba menyusup ke dalam komunikasi antara Manwe dan Eru. Jalankan file berikut (link file) lalu lakukan packet sniffing menggunakan Wireshark pada koneksi antara Manwe dan Eru, lalu terapkan display filter untuk menampilkan semua paket yang berasal dari atau menuju ke IP Address Manwe. Simpan hasil capture tersebut sebagai bukti._
 ### Langkah pengerjaan
 1. Jalankan command di bawah di Manwe untuk mengunduh file yang dimaksud.
 ```
@@ -177,7 +176,7 @@ wget --no-check-certificate "https://drive.usercontent.google.com/u/0/uc?id=1bE3
 9. Jika file sudah selesai dijalankan, stop capture lalu simpan file.
 
 ## soal_7
-Untuk meningkatkan keamanan, Eru memutuskan untuk membuat sebuah FTP Server di node miliknya. Lakukan konfigurasi FTP Server pada node Eru. Buat dua user baru: ainur dengan hak akses write&read dan melkor tanpa hak akses sama sekali ke direktori shared. Buktikan hasil tersebut dengan membuat file teks sederhana kemudian akses file tersebut menggunakan kedua user.
+_Untuk meningkatkan keamanan, Eru memutuskan untuk membuat sebuah FTP Server di node miliknya. Lakukan konfigurasi FTP Server pada node Eru. Buat dua user baru: ainur dengan hak akses write&read dan melkor tanpa hak akses sama sekali ke direktori shared. Buktikan hasil tersebut dengan membuat file teks sederhana kemudian akses file tersebut menggunakan kedua user._
 ### Langkah pengerjaan
 1. Karena tadi konfigurasi sudah tersimpan, skip step install vsftpd.
 2. Buat dan buka file vsftpd, lalu ganti dengan code di bawah 
@@ -193,15 +192,15 @@ write_enable=YES
 chroot_local_user=YES
 allow_writeable_chroot=YES
 ```
-5. Start servis vsftpd
+3. Start servis vsftpd
 ```
 service vsftpd start
 ```
-9. Buat direktori shared
+4. Buat direktori shared
 ```
 mkdir -p /srv/ftp/shared
 ```
-11. Tambahkan user ainur dan melkor. Lalu atur izinnya sesuai dengan soal.
+5. Tambahkan user ainur dan melkor. Lalu atur izinnya sesuai dengan soal.
 ```
 adduser ainur
 adduser melkor
@@ -210,33 +209,32 @@ usermod -d /srv/ftp/shared melkor
 chown ainur:ainur /srv/ftp/shared
 chmod 700 /srv/ftp/shared
 ```
-8. Masuk ke ftp
+6. Masuk ke ftp
 ```
 ftp 192.234.1.1
 ```
-11. Buat file bebas.
-12. Coba akses file tersebut menggunakan user ainur dan melkor.
+7. Buat file bebas.
+8. Coba akses file tersebut menggunakan user ainur dan melkor.
 
 ## soal_8
-Ulmo, sebagai penjaga perairan, perlu mengirimkan data ramalan cuaca ke node Eru. Lakukan koneksi sebagai client dari node Ulmo ke FTP Server Eru menggunakan user ainur. Upload sebuah file berikut (link file). Analisis proses ini menggunakan Wireshark dan identifikasi perintah FTP yang digunakan untuk proses upload.
+_Ulmo, sebagai penjaga perairan, perlu mengirimkan data ramalan cuaca ke node Eru. Lakukan koneksi sebagai client dari node Ulmo ke FTP Server Eru menggunakan user ainur. Upload sebuah file berikut (link file). Analisis proses ini menggunakan Wireshark dan identifikasi perintah FTP yang digunakan untuk proses upload._
 ### Langkah pengerjaan
-ULMO
-1. Jalankan command di bawah di Manwe untuk mengunduh file yang dimaksud.
+1. Jalankan command di bawah di Ulmo untuk mengunduh file yang dimaksud.
 ```
 wget --no-check-certificate "https://drive.usercontent.google.com/u/0/uc?id=11ra_yTV_adsPIXeIPMSt0vrxCBZu0r33&export=download" -O cuaca.zip
 ```
-3. Unzip `cuaca.zip`
-5. Start servis vsftpd
+2. Unzip `cuaca.zip`
+3. Start servis vsftpd
 ```
 service vsftpd start
 ```
-6. Buka project di GNS3 Client. Klik kanan pada link antara Switch2 dan Ulmo
-7. Klik start capture, maka akan langsung diarahkan ke wireshark.
-8. Kembali ke kali, masuk ke ftp
+4. Buka project di GNS3 Client. Klik kanan pada link antara Switch2 dan Ulmo
+5. Klik start capture, maka akan langsung diarahkan ke wireshark.
+6. Kembali ke kali, masuk ke ftp
 ```
 ftp 192.234.1.1
 ```
-9. Taruh isi file cuaca.zip di ftp
+7. Taruh isi file cuaca.zip di ftp
 ```
 put cuaca.txt
 put mendung.jpg
@@ -245,64 +243,131 @@ put mendung.jpg
 9. Stop capture lalu simpan file.
 
 ## soal_9
-Eru ingin membagikan "Kitab Penciptaan" di (link file) kepada Manwe. Dari FTP Server Eru, download file tersebut ke node Manwe. Karena Eru merasa Kitab tersebut sangat penting maka ia mengubah akses user ainur menjadi read-only. Gunakan Wireshark untuk memonitor koneksi, identifikasi perintah FTP yang digunakan, dan uji akses user ainur.
+_Eru ingin membagikan "Kitab Penciptaan" kepada Manwe. Dari FTP Server Eru, download file tersebut ke node Manwe. Karena Eru merasa Kitab tersebut sangat penting maka ia mengubah akses user ainur menjadi read-only. Gunakan Wireshark untuk memonitor koneksi, identifikasi perintah FTP yang digunakan, dan uji akses user ainur._
 ### Langkah pengerjaan
 ERU
-1. wget --no-check-certificate "https://drive.usercontent.google.com/u/0/uc?id=11ua2KgBu3MnHEIjhBnzqqv2RMEiJsILY&export=download" -O kitab_penciptaan.zip
-2. unzip kitab_penciptaan
-3. service vsftpd start
-4. ftp 192.234.1.1
-5. put kitab_penciptaan.txt
-MANWE
-6. service vsftpd start
-7. ftp 192.234.1.1
-8. get kitab_penciptaan.txt
-ERU
-9. chmod 555 /srv/ftp/shared
-10. service vsftpd start
-11. nano halo.txt
-12. ftp 192.234.1.1
-13. put halo.txt
+1. Jalankan command di bawah di Eru untuk mengunduh file yang dimaksud.
+```
+wget --no-check-certificate "https://drive.usercontent.google.com/u/0/uc?id=11ua2KgBu3MnHEIjhBnzqqv2RMEiJsILY&export=download" -O kitab_penciptaan.zip
+```
+2. Unzip `kitab_penciptaan.zip`
+3. Start servis vsftpd
+4. Masuk ke ftp dan login sebagai ainur.
+5. Taruh `kitab_penciptaan.txt` di ftp.
+```
+put kitab_penciptaan.txt
+```
+Jalankan command di bawah di Manwe.
+6. Start servis vsftpd
+```
+service vsftpd start
+```
+7. Start capture di link antara Manwe dan Eru. Kemudian amati prosesnya di wireshark.
+8. Masuk ke ftp dan login sebagai ainur.
+9. Ambil `kitab_penciptaan.txt`
+```
+get kitab_penciptaan.txt
+```
+Jalankan command di bawah di Eru.
+10. Ganti akses ainur sehingga hanya bisa read.
+```
+chmod 555 /srv/ftp/shared
+```
+11. Start servis vsftpd
+12. Membuat text file untuk uji coba
+13. Masuk ke ftp sebagai ainur
+14. Coba `put halo.txt`
+15. Periksa lagi wireshark untuk memonitor koneksi, identifikasi perintah FTP yang digunakan, dan uji akses user ainur.
 
 ## soal_10
-Melkor yang marah karena tidak diberi akses, mencoba melakukan serangan dengan mengirimkan banyak sekali request ke server Eru. Gunakan command ping dari node Melkor ke node Eru dengan jumlah paket yang tidak biasa (spam ping misalnya 100 paket). Amati hasilnya, apakah ada packet loss? Catat average round trip time untuk melihat apakah serangan tersebut mempengaruhi kinerja Eru.
+_Melkor yang marah karena tidak diberi akses, mencoba melakukan serangan dengan mengirimkan banyak sekali request ke server Eru. Gunakan command ping dari node Melkor ke node Eru dengan jumlah paket yang tidak biasa (spam ping misalnya 100 paket). Amati hasilnya, apakah ada packet loss? Catat average round trip time untuk melihat apakah serangan tersebut mempengaruhi kinerja Eru._
 ### Langkah pengerjaan
-1. ping 192.234.1.1 -c 100
+1. Mencoba ping 100x di Eru.
+```
+ping 192.234.1.1 -c 100
+```
 
 ## soal_11
-Sebelum era koneksi aman, Eru sering menyelinap masuk ke wilayah Melkor. Eru perlu masuk ke node tersebut untuk memeriksa konfigurasi, namun ia tahu Melkor mungkin sedang memantau jaringan. Buktikan kelemahan protokol Telnet dengan membuat akun dan password baru di node Melkor kemudian menangkap sesi login Eru ke node Melkor menggunakan Wireshark. Tunjukkan bagaimana username dan password dapat terlihat sebagai plain text. 
+_Sebelum era koneksi aman, Eru sering menyelinap masuk ke wilayah Melkor. Eru perlu masuk ke node tersebut untuk memeriksa konfigurasi, namun ia tahu Melkor mungkin sedang memantau jaringan. Buktikan kelemahan protokol Telnet dengan membuat akun dan password baru di node Melkor kemudian menangkap sesi login Eru ke node Melkor menggunakan Wireshark. Tunjukkan bagaimana username dan password dapat terlihat sebagai plain text._
 ### Langkah pengerjaan
 Jalankan command-command berikut di Melkor
-1. adduser jala
-2. apt install telnetd -y
-3. apt install openbsd-inetd -y
-4. echo "telnet stream tcp nowait root /usr/sbin/telnetd telnetd" >> /etc/inetd.conf
-5. service openbsd-inetd restart
+1. Membuat akun bebas di Melkor (akan jadi akun yang dicoba login lewat Telnet)
+2. Install telnet daemon (program server telnet).
+```
+apt install telnetd -y
+```
+3. inetd (internet super-server) menjalankan layanan yang dideklarasikan di `/etc/inetd.conf`.
+```
+apt install openbsd-inetd -y
+```
+4. Menambahkan baris agar inetd memanggil telnetd bila ada koneksi ke service bernama telnet.
+```
+echo "telnet stream tcp nowait root /usr/sbin/telnetd telnetd" >> /etc/inetd.conf
+```
+5. Restart inetd agar pembaruan /etc/inetd.conf di-load.
+```
+service openbsd-inetd restart
+```
+6.  Start capture di link antara Eru dan Melkor di GNS3. Amati prosesnya di wireshark.
 Jalankan command-command berikut di Eru
-7. telnet 10.15.43.32 5352
-
+7. Koneksikan ke Melkor. Kemudian masukkan jala sebagai username dan password saat diminta.
+```
+telnet 10.15.43.32 5352
+```
 
 ## soal_12
-Eru mencurigai Melkor menjalankan beberapa layanan terlarang di node-nya. Lakukan pemindaian port sederhana dari node Eru ke node Melkor menggunakan Netcat (nc) untuk memeriksa port 21, 80, dalam keadaan terbuka dan port rahasia 666 dalam keadaan tertutup.
+_Eru mencurigai Melkor menjalankan beberapa layanan terlarang di node-nya. Lakukan pemindaian port sederhana dari node Eru ke node Melkor menggunakan Netcat (nc) untuk memeriksa port 21, 80, dalam keadaan terbuka dan port rahasia 666 dalam keadaan tertutup._
 ### Langkah pengerjaan
-MELKOR
-1. apt install netcat-openbsd && apt install apache2 -y
-2. service vsftpd start
-3. vsftpd
-4. nc -zv 192.234.1.2 21
-5. service apache2 start
-6. nc -zv 192.234.1.2 80
-7. nc -zv 192.234.1.2 666
+Jalankan command-command berikut di Melkor.
+1. Pasang netcat dan Apache (HTTP) agar port 80 terbuka.
+```
+apt install netcat-openbsd && apt install apache2 -y
+```
+2. Menjalankan FTP server (vsftpd) supaya port 21 terbuka.
+```
+service vsftpd start
+vsftpd
+```
+3. Scan port 21 pada host 192.234.1.2. Opsi `-z` = scanning mode (no data), `-v` = verbose.
+```
+nc -zv 192.234.1.2 21
+```
+4. Start web server sehingga port 80 akan open/listen.
+```
+service apache2 start
+```
+5. Cek port 80.
+```
+nc -zv 192.234.1.2 80
+```
+6. Cek port 666
+```
+nc -zv 192.234.1.2 666
+```
 
 ## soal_13
-Setelah insiden penyadapan Telnet, Eru memerintahkan semua koneksi administratif harus menggunakan SSH (Secure Shell) untuk mengamankan jaringan. Lakukan koneksi SSH dari node Varda ke Eru. Tangkap sesi tersebut menggunakan Wireshark. Analisis dan jelaskan mengapa username dan password tidak dapat dilihat seperti pada sesi Telnet. Tunjukkan paket-paket terenkripsi dalam hasil capture sebagai bukti keamanan SSH.
+_Setelah insiden penyadapan Telnet, Eru memerintahkan semua koneksi administratif harus menggunakan SSH (Secure Shell) untuk mengamankan jaringan. Lakukan koneksi SSH dari node Varda ke Eru. Tangkap sesi tersebut menggunakan Wireshark. Analisis dan jelaskan mengapa username dan password tidak dapat dilihat seperti pada sesi Telnet. Tunjukkan paket-paket terenkripsi dalam hasil capture sebagai bukti keamanan SSH._
 ### Langkah pengerjaan
 Jalankan command-command berikut di Eru
-1. apt install openssh-server -y
-2. service ssh start
-3. adduser jala
+1. Install OpenSSH server.
+```
+apt install openssh-server -y
+```
+2. Jalankan SSH daemon
+```
+service ssh start
+```
+3. Buat akun bebas (ataupun gunakan akun yang sama sebelumnya).
+```
+adduser jala
+```
 Jalankan command-command berikut di Varda
-4. ssh jala@192.234.2.1
+4. Start capture di link antara Varda dan Eru di GNS3.
+5. Sambung ke Eru; masukkan password saat diminta.
+```
+ssh jala@192.234.2.1
+```
+6. Amati prosesnya di wireshark. Akan muncul paket-paket berlabel SSH di kolom Protocol. Paket akan menunjukkan Data (encrypted) atau SSH Protocol dengan payload berupa bytes acak; tidak ada teks login: atau Password: yang mudah dibaca. Klik kanan → Follow → TCP Stream, isi stream akan tampil sebagai binary/garbage (bukan username/password).
 
 ## soal_14
 
